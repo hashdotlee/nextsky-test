@@ -1,0 +1,42 @@
+<div class="w-full border-b">
+	<div class="flex text-[14px] items-center justify-between h-[50px] text-[#212529] page-width font-semibold">
+		<div class="flex items-center gap-8">
+		{%- liquid
+		  if section.settings.menu != blank
+			if section.settings.menu_type_desktop == 'dropdown'
+			  render 'header-dropdown-menu'
+			elsif section.settings.menu_type_desktop != 'drawer'
+			  render 'header-mega-menu'
+			endif
+		  endif
+		%}
+		<a href="#" class="text-[#DC323C]">Buy Uminex!</a>
+		</div>
+		<div class="flex gap-2 items-center">
+			{% render 'icon-discount-2' %}
+			Sale $20 Off Your First Order
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+	"name": "t:sections.nav-bar.name",
+	"tag": "section",
+	"class": "section",
+	"settings": [
+		{
+		  "type": "link_list",
+		  "id": "menu",
+		  "default": "main-menu",
+		  "label": "t:sections.header.settings.menu.label"
+		},
+		{
+		  "type": "image_picker",
+		  "id": "discount_icon",
+		  "label": "t:sections.header.settings.discount_icon.label"
+		}
+	]
+
+}
+{% endschema %}

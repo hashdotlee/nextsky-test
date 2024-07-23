@@ -1,0 +1,33 @@
+<div class="w-full border-b">
+<div class="flex justify-between items-center page-width h-[40px]">
+	<div class="text-[13px]">
+		<span>You are a student and students get 20% discount.</span>
+		<a href="#" class="font-bold underline">Learn more</a>
+	</div>
+	<div>
+		<ul class="flex items-center gap-5 text-[13px]">
+			<li><a href="#">Store Locator</a></li>
+			<li><a href="#">Order Tracking</a></li>
+			<li><a href="#">FAQs</a></li>
+			<li><a href="#">English</a></li>
+			<li><a href="#">USD</a></li>
+		</ul>
+	</div>
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.top-bar.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+	{
+	  "type": "checkbox",
+	  "id": "enable_student_discount",
+	  "label": "t:sections.top-bar.settings.enable_student_discount.label",
+	  "default": false
+	},
+  ]
+}
+{% endschema %}

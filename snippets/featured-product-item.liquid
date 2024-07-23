@@ -1,0 +1,48 @@
+<a href="{{product.url}}" class="w-full block h-[750px] px-[18px] py-[20px] space-y-[20px] bg-white border rounded-md">
+	<div class="text-[16px] font-bold border-b pb-[10px]">
+		TODAY'S OFFER
+	</div>
+	<div class="relative">
+		<img src="{{ product.featured_image.src | img_url: '300x' }}" alt="{{ product.featured_image.alt }}" class="w-[386px] h-[386px] object-cover">
+		<span>
+			{% if product.compare_at_price > product.price %}
+				<span class="absolute left-0 font-semibold top-0 bg-[#DC323C] text-white text-[12px] w-[55px] h-[25px] flex items-center justify-center rounded-[5px]">{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price }}%</span>
+			{% endif %}
+		</span>
+	</div>	
+	<div class="space-y-[20px]">
+		<div>
+			<p class="text-[14px] font-semibold text-[#212529]">{{ product.title }}</p>
+			<p class="text-[12px] items-center flex gap-1"> 
+				{% for i in (1..5) %}
+					{% if i <= 5 %}
+						<i class="fa-solid fa-star text-[#FFC107]"></i>
+					{% else %}
+						<i class="fa-solid fa-star text-[#8D979E]"></i>
+					{% endif %}
+				{% endfor %}
+				<span class="font-medium">(68) </span>
+			</p>
+			<div class="flex items-end gap-[4px]">
+				<p class="text-[18px] font-semibold text-[#DC323C]">{{ product.price | money }}</p>
+				<p class="text-[14px] line-through text-[#8D979E]">{{ product.compare_at_price | money }}</p>
+			</div>
+		</div>
+		<div class="space-y-[9px]">
+			<p>Hurry up! Offer ends in:</p>
+			{% render 'countdown' %}
+		</div>
+		<div role="progressbar">
+			<div class="w-[100%] h-[5px] bg-[#E0E0E0] rounded-[5px]">
+				<div
+					style="width: {{
+						   620 | times: 100.0 | divided_by: 896
+					}}%"
+					class="h-[5px] bg-[#DC323C] rounded-[5px]">
+
+				</div>
+			</div>
+		</div>
+		<p class="font-medium text-[12px]"> Sold: <span class="font-semibold text-[14px]">620/896</span> products </p>
+	</div>
+</a>

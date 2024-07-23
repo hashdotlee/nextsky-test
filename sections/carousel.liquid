@@ -1,0 +1,164 @@
+{% style %}
+  .carousel {
+      height: 409px;
+      overflow: hidden;
+	  margin: 20px auto 4px;
+  }
+
+  .slides {
+      display: flex;
+      width: 100%;
+      position: absolute;
+  }
+
+  .slide {
+      flex-shrink: 0;
+	  width: 100%;
+      height: 409px;
+	  border-radius: 5px;
+  }
+
+  .carousel-button {
+  	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: white;
+  }
+{% endstyle %}
+
+<div class="page-width">
+<div class="carousel relative">
+	<button id="back" class="absolute carousel-button z-[1] top-1/2 left-[30px] -translate-y-1/2">
+		<i class="fa-solid fa-chevron-left"></i>
+	</button>
+	<button id="forward" class="absolute carousel-button z-[1] top-1/2 right-[30px] -translate-y-1/2">
+		<i class="fa-solid fa-chevron-right"></i>
+	</button>
+      <div class="slides">
+		  {% for slide in section.blocks %}
+			  <div class="slide pl-[191px] space-y-[30px] flex-col bg-cover bg-center bg-no-repeat flex justify-center items-start" style="background-image:url({{
+					slide.settings.image | img_url: '800x'
+			  }})">
+				  <div class="space-y-[20px]">
+					  <div class="text-[#FDE50B] text-[12px] uppercase">GAMEPAD CONSOLE</div>
+					  <div class="text-[46px] text-white">
+						  <p>Today’s Offer</p>
+						  <p>Skin <span class="text-[#17F084]">Gamepad</span> 2022</p>
+					  </div>
+				  </div>
+				  <div>
+					  <button class="bg-white justify-center text-[12px] font-bold w-[151.87px] h-[45px] px-[10px] text-[#212529] flex items-center rounded-[30px]">Shop Now</button>
+				  </div>
+			  </div>
+		  {% endfor %}
+      </div>
+	  <div class="absolute bottom-4 left-1/2 -translate-x-1/2">
+		  {% for slide in section.blocks %}
+			  <div class="w-[10px] h-[10px] paginate-item bg-white rounded-full inline-block mx-[5px]"> </div>
+		  {% endfor %}
+	  </div>
+  </div>
+</div>
+
+{% javascript %}
+	const slidesEl = document.querySelector(".slides");
+    const backButtonEl = document.querySelector("#back");
+    const forwardButtonEl = document.querySelector("#forward");
+
+    backButtonEl.addEventListener("click", () => navigate("backward"));
+    forwardButtonEl.addEventListener("click", () => navigate("forward"));
+
+    const slideWidth = slidesEl.offsetWidth;
+    const overallWidth = slidesEl.scrollWidth; // = slideWidth * numSlides
+
+	if (calculateNewPosition("backward") === 0){
+		backButtonEl.style.opacity = "0.2";
+	}
+	
+	if (calculateNewPosition("forward") === (-overallWidth + slideWidth)){
+		forwardButtonEl.style.opacity = "0.2";
+	}
+
+    function navigate(direction) {
+        const x = calculateNewPosition(direction);
+        slidesEl.style.transform = `translateX(${x}px)`;
+    }
+
+    function calculateNewPosition(direction) {
+        const str = slidesEl.style.transform;
+        const x = str ? parseInt(str.match(/-?(\d+)/g)) : 0;
+
+        if (direction === "forward") {
+            const atLastSlide = x === -overallWidth + slideWidth;
+            // Non-looping carousel: Stops at last slide
+
+			if (atLastSlide){
+				forwardButtonEl.style.opacity = "0.2";
+				backButtonEl.style.opacity = "1";
+			} else {
+				forwardButtonEl.style.opacity = "1";
+				backButtonEl.style.opacity = "1";
+			}
+				
+            return atLastSlide ? x : x - slideWidth;
+            // Looping carousel: Transitions from last slide to first slide 
+            // return atLastSlide ? 0 : x-slideWidth;
+        } else if (direction === "backward") {
+            const atFirstSlide = x === 0;
+            // Non-looping carousel: Stops at first slide
+
+			if (atFirstSlide){
+				backButtonEl.style.opacity = "0.2";
+				forwardButtonEl.style.opacity = "1";
+			} else {
+				backButtonEl.style.opacity = "1";
+				forwardButtonEl.style.opacity = "1";
+			}
+
+            return atFirstSlide ? x : x + slideWidth;
+            // Looping carousel: Transitions from first slide to last slide
+            // return atFirstSlide ? -overallWidth + slideWidth : x + slideWidth;
+        }
+    }
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Carousel",
+  "settings": [],
+  "blocks": [
+	{
+		"type": "slide",
+		"name": "Slide",
+		"settings": [
+			{
+				"type": "image_picker",
+				"id": "image",
+				"label": "Image"
+			},
+			{
+				"type": "liquid",
+				"id": "custom_liquid",
+				"label": "Custom Liquid",
+			}
+		]
+	}
+  ],
+  "presets": [
+	{
+	  "category": "Custom",
+	  "name": "Carousel",
+	  "settings": {},
+	  "blocks": [
+	  	{
+			"type": "slide",
+			"settings": {
+				"image": "",
+				"custom_liquid": ""
+			}
+		},
+	  ]
+	}
+  ]
+}
+{% endschema %}

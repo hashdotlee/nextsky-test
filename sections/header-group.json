@@ -2,22 +2,11 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar",
-      "blocks": {
-        "announcement-bar-0": {
-          "type": "announcement",
-          "settings": {
-            "text": "Welcome to our store",
-            "text_alignment": "center",
-            "color_scheme": "scheme-1",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "announcement-bar-0"
-      ]
+    "topbar": {
+      "type": "top-bar",
+      "settings": {
+        "enable_student_discount": true
+      }
     },
     "header": {
       "type": "header",
@@ -35,10 +24,10 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "nav-bar": {
+      "type": "nav-bar"
     }
   },
-  "order": [
-    "announcement-bar",
-    "header"
-  ]
+  "order": ["topbar", "header", "nav-bar"]
 }

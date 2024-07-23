@@ -1,0 +1,7 @@
+{
+  "name": "nextsky-test",
+  "packageManager": "yarn@4.1.1",
+  "scripts": {
+    "dev": "tailwindcss -i ./assets/tailwind.css -o ./assets/global.css --watch & shopify theme dev --store just-a-dev"
+  }
+}

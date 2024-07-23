@@ -1,0 +1,32 @@
+<a href="{{product.url}}" class="w-full block space-y-[13px] px-[18px] py-[20px] bg-white border h-[373px] rounded-md">
+	<div class="relative">
+		<img src="{{ product.featured_image.src | img_url: '300x' }}" alt="{{ product.featured_image.alt }}" class="w-[191px] h-[191px] object-cover">
+		<span>
+			{% if product.compare_at_price > product.price %}
+				<span class="absolute left-0 font-semibold top-0 bg-[#DC323C] text-white text-[12px] w-[55px] h-[25px] flex items-center justify-center rounded-[5px]">{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price }}%</span>
+			{% endif %}
+		</span>
+	</div>	
+	<div>
+		<p class="text-[14px] font-semibold text-[#212529]">{{ product.title }}</p>
+		<p class="text-[12px] items-center flex gap-1"> 
+			{% for i in (1..5) %}
+				{% if i <= 5 %}
+					<i class="fa-solid fa-star text-[#FFC107]"></i>
+				{% else %}
+					<i class="fa-solid fa-star text-[#8D979E]"></i>
+				{% endif %}
+			{% endfor %}
+			<span class="font-medium">(68) </span>
+		</p>
+		<div class="flex items-end gap-[4px]">
+			<p class="text-[18px] font-semibold text-[#DC323C]">{{ product.price | money }}</p>
+			<p class="text-[14px] line-through text-[#8D979E]">{{ product.compare_at_price | money }}</p>
+		</div>
+	</div>
+		{% if product.first_available_variant.inventory_quantity >= 10 %}
+			<p class="text-[12px] font-medium text-[#212529]"><span class="text-[#008A00]"><i class="fa-solid fa-check"></i> In stock</span> <strong>{{product.first_available_variant.inventory_quantity}}</strong> product </p>
+		{% else %}
+			<p class="text-[12px] font-medium text-[#DC323C]"><i class="fa-solid fa-check"></i> Only {{ product.first_available_variant.inventory_quantity }} left in stock</p>
+		{% endif %}
+</a>

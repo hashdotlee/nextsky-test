@@ -1,0 +1,56 @@
+<div class="page-width">
+	<div class="grid grid-cols-3 gap-[4px]">
+		{% for block in section.blocks %}
+			<div class="w-full h-[200px] bg-gray-200 rounded-[5px] overflow-hidden">
+				<img src="{{ block.settings.image | img_url: 'master' }}" alt="banner" class="object-cover object-center w-full h-full">
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% schema %}
+{
+	"name": "t:sections.banner-row.name",
+	"tag": "section",
+	"class": "section",
+	"blocks": [
+		{
+			"type": "banner_image",
+			"name": "t:sections.banner-row.blocks.images.name",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "t:sections.banner-row.blocks.images.settings.image.label"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "banner-row",
+			"blocks": [
+				{
+					"type": "banner_image",
+					"settings": {
+						"image": ""
+					}
+				},
+				{
+					"type": "banner_image",
+					"settings": {
+						"image": ""
+					}
+				},
+				{
+					"type": "banner_image",
+					"settings": {
+						"image": ""
+					}
+				}
+			]
+
+		}
+	]
+}
+{% endschema %}
