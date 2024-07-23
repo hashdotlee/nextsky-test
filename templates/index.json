@@ -1,14 +1,81 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "sections": {
     "carousel": {
-      "type": "carousel"
+      "type": "carousel",
+      "blocks": {
+        "slide_wMdxQn": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/img.png",
+            "custom_liquid": ""
+          }
+        },
+        "slide_4FW9XW": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bg.png",
+            "custom_liquid": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_wMdxQn",
+        "slide_4FW9XW"
+      ],
+      "settings": {
+      }
     },
     "banner-row": {
-      "type": "banner-row"
+      "type": "banner-row",
+      "blocks": {
+        "banner_image_zi6w7A": {
+          "type": "banner_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bg.png"
+          }
+        },
+        "banner_image_UVTinm": {
+          "type": "banner_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/2.png"
+          }
+        },
+        "banner_image_xwLpHk": {
+          "type": "banner_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/3.png"
+          }
+        }
+      },
+      "block_order": [
+        "banner_image_zi6w7A",
+        "banner_image_UVTinm",
+        "banner_image_xwLpHk"
+      ],
+      "settings": {
+      }
     },
     "product-grid": {
-      "type": "product-grid"
+      "type": "product-grid",
+      "settings": {
+        "collection-left": "left-featured",
+        "collection-right": "right-featured",
+        "product": "apple-iphone-13-pro-max-128gb-gold-fully-unlocked"
+      }
     }
   },
-  "order": ["carousel", "banner-row", "product-grid"]
+  "order": [
+    "carousel",
+    "banner-row",
+    "product-grid"
+  ]
 }
