@@ -17,15 +17,15 @@
         "footer-0": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
-            "menu": "quick-link"
+            "heading": "Information",
+            "menu": "information-menu"
           }
         },
         "footer-1": {
           "type": "link_list",
           "settings": {
-            "heading": "Information",
-            "menu": "information-menu"
+            "heading": "Quick Links",
+            "menu": "quick-link"
           }
         },
         "footer-2": {
