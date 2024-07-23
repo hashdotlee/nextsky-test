@@ -34,7 +34,7 @@
 	<button id="forward" class="absolute carousel-button z-[1] top-1/2 right-[30px] -translate-y-1/2">
 		<i class="fa-solid fa-chevron-right"></i>
 	</button>
-      <div class="slides">
+      <div class="slides" style="transform: translateX(0px)">
 		  {% for slide in section.blocks %}
 			  <div class="slide pl-[191px] space-y-[30px] flex-col bg-cover bg-center bg-no-repeat flex justify-center items-start" style="background-image:url({{
 					slide.settings.image | img_url: '800x'
@@ -71,13 +71,8 @@
     const slideWidth = slidesEl.offsetWidth;
     const overallWidth = slidesEl.scrollWidth; // = slideWidth * numSlides
 
-	if (calculateNewPosition("backward") === 0){
-		backButtonEl.style.opacity = "0.2";
-	}
-	
-	if (calculateNewPosition("forward") === (-overallWidth + slideWidth)){
-		forwardButtonEl.style.opacity = "0.2";
-	}
+	calculateNewPosition("forward");
+	calculateNewPosition("backward");
 
     function navigate(direction) {
         const x = calculateNewPosition(direction);
@@ -94,7 +89,6 @@
 
 			if (atLastSlide){
 				forwardButtonEl.style.opacity = "0.2";
-				backButtonEl.style.opacity = "1";
 			} else {
 				forwardButtonEl.style.opacity = "1";
 				backButtonEl.style.opacity = "1";
@@ -109,7 +103,6 @@
 
 			if (atFirstSlide){
 				backButtonEl.style.opacity = "0.2";
-				forwardButtonEl.style.opacity = "1";
 			} else {
 				backButtonEl.style.opacity = "1";
 				forwardButtonEl.style.opacity = "1";
